@@ -1,11 +1,17 @@
-node('node') {
-    stage('Checkout') {
+pipeline {
+    agent {
+        node { label 'nodejs' }
+          }
+    stages {
+        stage('Checkout') {
          git branch: 'main', url: 'https://github.com/amitkesarkar29/do400-pipelines-control.git'
         }
-    stage('Backend Tests') {
+        stage('Backend Tests') {
          sh 'node ./backend/test.js'
         }
-    stage('Frontend Tests') {
+        stage('Frontend Tests') {
          sh 'node ./frontend/test.js'
         } 
+    }
 }
+
